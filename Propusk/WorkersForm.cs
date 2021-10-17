@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Propusk
 {
-    public partial class FormReport : Form
+    public partial class WorkersForm : Form
     {
-        public FormReport()
+        public WorkersForm()
         {
             InitializeComponent();
+        }
+
+        private void buttonFind_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
