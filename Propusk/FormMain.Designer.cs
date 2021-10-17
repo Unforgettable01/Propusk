@@ -155,8 +155,9 @@ namespace Propusk
             // 
             // richTextBoxInfo
             // 
-            this.richTextBoxInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.richTextBoxInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxInfo.Location = new System.Drawing.Point(14, 118);
             this.richTextBoxInfo.Name = "richTextBoxInfo";
             this.richTextBoxInfo.Size = new System.Drawing.Size(1259, 433);

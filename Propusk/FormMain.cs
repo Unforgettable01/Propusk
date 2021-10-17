@@ -90,7 +90,7 @@ namespace Propusk
                         actualRemainingTime -= TimeOnClient;
                         Client actualClient = clients.Dequeue();
                         //System.Threading.Thread.Sleep(500);
-                        Draw();
+                        //Draw();
                         richTextBoxInfo.AppendText("\nПассажир с номером - " + actualClient.Id + " прошел контроль");
                     }
                     else
