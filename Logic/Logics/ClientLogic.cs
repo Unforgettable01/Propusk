@@ -29,33 +29,33 @@ namespace Logic.Logics
             return _clientStorage.GetFilteredList(model);
         }
 
-        public void CreateOrUpdate(ClientBindingModel model)
-        {
-            var element = _clientStorage.GetElement(new ClientBindingModel
-            {
-                ClientFIO = model.ClientFIO
-            });
-            if (element != null && element.Id != model.Id)
-            {
-                throw new Exception("Уже есть клиент с таким логином");
-            }            
-            else
-            {
-                _clientStorage.Insert(model);
-            }
-        }
+        //public void CreateOrUpdate(ClientBindingModel model)
+        //{
+        //    var element = _clientStorage.GetElement(new ClientBindingModel
+        //    {
+        //        ClientFIO = model.ClientFIO
+        //    });
+        //    if (element != null && element.Id != model.Id)
+        //    {
+        //        throw new Exception("Уже есть клиент с таким логином");
+        //    }            
+        //    else
+        //    {
+        //        _clientStorage.Insert(model);
+        //    }
+        //}
 
-        public void Delete(ClientBindingModel model)
-        {
-            var element = _clientStorage.GetElement(new ClientBindingModel
-            {
-                Id = model.Id
-            });
-            if (element == null)
-            {
-                throw new Exception("Клиент не найден");
-            }
-            _clientStorage.Delete(model);
-        }
+        //public void Delete(ClientBindingModel model)
+        //{
+        //    var element = _clientStorage.GetElement(new ClientBindingModel
+        //    {
+        //        Id = model.Id
+        //    });
+        //    if (element == null)
+        //    {
+        //        throw new Exception("Клиент не найден");
+        //    }
+        //    _clientStorage.Delete(model);
+        //}
     }
 }

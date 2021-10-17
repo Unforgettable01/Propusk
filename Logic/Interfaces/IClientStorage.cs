@@ -11,7 +11,7 @@ namespace Logic.Interfaces
         List<ClientViewModel> GetFilteredList(ClientBindingModel model);
         List<ClientViewModel> GetFullList();
         ClientViewModel GetElement(ClientBindingModel model);
-        void Insert(ClientBindingModel model);
-        void Delete(ClientBindingModel model);
+        //void Insert(ClientBindingModel model);
+        //void Delete(ClientBindingModel model);
     }
 }

@@ -15,9 +15,9 @@ namespace Propusk
             this.Id = Id;
             //this.WorkerId = WorkerId;
         }
-        public void Start (StringBuilder textInfo)
-        {
-            textInfo.AppendLine("Сотрудник № - " + Id + " прошел контроль");
-        }
+        //public void Start (StringBuilder textInfo)
+        //{
+        //    textInfo.AppendLine("Сотрудник № - " + Id + " прошел контроль");
+        //}
     }
 }

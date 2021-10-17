@@ -17,18 +17,18 @@ namespace Propusk
             this.Id = Id;
             this.RemainingTime = RemainingTime;
         }
-        public int Start(int allocatedTime, StringBuilder textInfo)
-        {
-            textInfo.AppendLine("Сотрудник № - " + Id + " начал свою работу (оставшееся рабочее время " + RemainingTime + ")");
-            if (RemainingTime < allocatedTime)
-            {
-                return RemainingTime;
-            }
-            else
-            {
-                RemainingTime -= allocatedTime;
-                return 0;
-            }
-        }
+        //public int Start(int allocatedTime, StringBuilder textInfo)
+        //{
+        //    textInfo.AppendLine("Сотрудник № - " + Id + " начал свою работу (оставшееся рабочее время " + RemainingTime + ")");
+        //    if (RemainingTime < allocatedTime)
+        //    {
+        //        return RemainingTime;
+        //    }
+        //    else
+        //    {
+        //        RemainingTime -= allocatedTime;
+        //        return 0;
+        //    }
+        //}
     }
 }

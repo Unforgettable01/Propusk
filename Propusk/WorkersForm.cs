@@ -16,7 +16,8 @@ namespace Propusk
         {
             InitializeComponent();
         }
-
+        //private readonly WorkerBusinessLogic _molBusinesslogic;
+       // MOLViewModel view;
         private void buttonFind_Click(object sender, EventArgs e)
         {
 

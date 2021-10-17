@@ -8,5 +8,6 @@ namespace Propusk
 {
     public class DrawInfo
     {
+
     }
 }

@@ -11,7 +11,7 @@ namespace Logic.Interfaces
         List<WorkerViewModel> GetFilteredList(WorkerBindingModel model);
         List<WorkerViewModel> GetFullList();
         WorkerViewModel GetElement(WorkerBindingModel model);
-        void Insert(WorkerBindingModel model);
-        void Delete(WorkerBindingModel model);
+        //void Insert(WorkerBindingModel model);
+        //void Delete(WorkerBindingModel model);
     }
 }
