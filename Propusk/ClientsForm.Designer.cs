@@ -94,6 +94,7 @@ namespace Propusk
             this.Controls.Add(this.dataGridViewClients);
             this.Name = "ClientsForm";
             this.Text = "ClientsForm";
+            this.Load += new System.EventHandler(this.FormClient_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClients)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClient)).EndInit();
             this.ResumeLayout(false);

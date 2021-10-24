@@ -18,6 +18,12 @@ namespace Propusk
         private int workersCount { get; set; }
         public int TimeOnClient = 3;
         public int ShiftTime = 240;
+
+        private int ShiftCount = 0; // кол-во смен
+        private int ClientCountStart = 0;
+        private int ClientCountFinish = 0;
+
+
         public DrawInfo DrawInfo { get; private set; }
         public FormMain()
         {
@@ -26,17 +32,20 @@ namespace Propusk
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            richTextBoxInfo.Clear();
+            ShiftCount ++; // при нажатии кол-во смен увеличивается на 1, чтобы модно было отследить как формировать очереди работников и посетителей            
             workersCount = Convert.ToInt32(comboBoxCountWorkers.SelectedItem.ToString());
-            clientsCount = Convert.ToInt32(comboBoxCountVisitors.SelectedItem.ToString());
+            Random rand =new Random();
+            ClientCountStart =Convert.ToInt32(comboBoxCountClientsStart.SelectedItem.ToString());
+            ClientCountFinish = Convert.ToInt32(comboBoxCountClientsFinish.SelectedItem.ToString());
+            clientsCount = rand.Next(ClientCountStart, ClientCountFinish);
             Shedule();
         }
         private void buttonSaveReport_Click(object sender, EventArgs e)
         {
-            string filename = "C:\\Users\\borya\\Downloads\\propusk.txt";
+            string filename = "C:\\Users\\borya\\Downloads\\propusk.txt"; // путь к файлу, в котором нахолится отчет
             try
             {
-                File.WriteAllText(filename, richTextBoxInfo.Text);
+                File.WriteAllText(filename, richTextBoxInfo.Text);   // Идет запись в файл (аргумент 1 , аргумент 2  )  1 - путь к файлу   2  -  сам текс, который записывется
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
@@ -62,74 +71,86 @@ namespace Propusk
 
         public void Shedule()
         {
-            //StringBuilder textInfo = new StringBuilder();
-            Init();
-            int workersCountForError = workers.Count;
+            if (ShiftCount  == 1 || ShiftCount == 4 || ShiftCount == 7 )
+            {
+                InitOne();
+            }
+            else
+            {
+                InitTwo();
+            }
+            //else if (ShiftCount ==3)
+            //{
+            //    InitTwo();
+            //}
+            //else if (ShiftCount==4)
+            //{
+            //    //MessageBox.Show("Укажите новое кол-во сотрудников", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //   // DialogResult = DialogResult.OK;
+            //    InitOne();
+            //}
+            //else if (ShiftCount > 4)
+            //{
+            //    richTextBoxInfo.AppendText("")
+            //}
+            richTextBoxInfo.AppendText("\nНачалась смена № - " + ShiftCount);
+            richTextBoxInfo.AppendText("\n\n");
+            richTextBoxInfo.AppendText("\n|---------------------------------------------------------------------------------------|\n");
+
             while (workers.Count != 0)
             {
                 if (clients.Count == 0)
                 {
-                    richTextBoxInfo.AppendText("\nВсе пассажиры успешно прошли\n");
+
                     break;
                 }
                 Worker actualWorker = workers.Dequeue();
-                if (actualWorker.Id != 1)
-                {
-                    richTextBoxInfo.AppendText("\nПроисходит смена персонала\n");
-                    //System.Threading.Thread.Sleep(500);
-
-                }
-                int actualRemainingTime = actualWorker.RemainingTime;
-                richTextBoxInfo.AppendText("\n|---------------------------------------------------------------------------------------|\n");
-                richTextBoxInfo.AppendText("\nНа пост вышел сотрудник с номером - " + actualWorker.Id);
-                richTextBoxInfo.AppendText("\n|---------------------------------------------------------------------------------------|\n");
-                while (actualRemainingTime >= TimeOnClient)
-                {
-                    if (clients.Count != 0)
-                    {
-                        actualRemainingTime -= TimeOnClient;
-                        Client actualClient = clients.Dequeue();
-                        //System.Threading.Thread.Sleep(500);
-                        //Draw();
-                        richTextBoxInfo.AppendText("\nПассажир с номером - " + actualClient.Id + " прошел контроль");
-                    }
-                    else
-                    {
-                        break;
-
-                    }
-                }
-            }
-            if (workers.Count == 0 && clients.Count > 0)
-            {
-                richTextBoxInfo.AppendText("\nУказанного количества персонала не хватило, чтобы обработать указанное количество пассажиров\n");
-                richTextBoxInfo.AppendText("\nОсталось " + clients.Count + "  пассажиров и для их обслуживания требуется еще минимум - " + clients.Count * TimeOnClient + " секунд\n");
-                richTextBoxInfo.AppendText("\nДля данного количесва пассажиров требуется еще " + (clients.Count * TimeOnClient) / workersCountForError + " сотрудников\n");
-
-
-                MessageBox.Show("Указанного количества персонала не хватило, чтобы обработать указанное количество пассажиров");
+                Client actualClient = clients.Dequeue();              
+                richTextBoxInfo.AppendText("\n Работник № - " + actualWorker.Id  + " обработал клиента № - " + actualClient.Id);
 
             }
+            richTextBoxInfo.AppendText("\nВ очереди осталось " + clients.Count + " человек\n");
         }
-        private void Init()
+        private void InitOne()
         {
             workers = new Queue<Worker>();
             clients = new Queue<Client>();
 
-            int actualRemainingTime = ShiftTime / workersCount;
+            
             for (int i = 0; i < workersCount; i++)
             {
-                workers.Enqueue(new Worker(i + 1, actualRemainingTime));
-                richTextBoxInfo.AppendText("\nБыла создан работник №  -  " + (i + 1));
+                workers.Enqueue(new Worker(i + 1));
+                //richTextBoxInfo.AppendText("\nБыл создан работник №  -  " + (i + 1));
             }
-            richTextBoxInfo.AppendText("\nВсего на смене " + workersCount + " работников");
+            richTextBoxInfo.AppendText("\nВсего на смене " + workers.Count + " работников");
 
             for (int i = 0; i < clientsCount; i++)
             {
                 clients.Enqueue(new Client(i + 1));
             }
-            richTextBoxInfo.AppendText("\nВсего на смене " + clientsCount + " клиентов");
+            richTextBoxInfo.AppendText("\nВсего на смене " + clients.Count + " клиентов");
         }
+
+        private void InitTwo()
+        {
+            workers = new Queue<Worker>();
+            for (int i = 0; i < workersCount; i++)
+            {
+                workers.Enqueue(new Worker(i + 1));
+                //richTextBoxInfo.AppendText("\nБыл создан работник №  -  " + (i + 1));
+            }
+            richTextBoxInfo.AppendText("\nВсего на смене " + workers.Count + " работников");
+
+
+            int clientCountNew = clients.Count + clientsCount;
+            richTextBoxInfo.AppendText("\nОсталось - " + clients.Count + " пришло " + clientsCount);
+            for (int i = clients.Count; i < clientCountNew; i++)
+            {
+                clients.Enqueue(new Client(i + 1));
+            }
+            richTextBoxInfo.AppendText("\nВсего на смене " + clients.Count + " клиентов ");
+        }
+
 
         public void Draw ()
         {

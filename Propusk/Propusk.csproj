@@ -217,6 +217,10 @@
       <Project>{135f35ce-ca9e-49c1-85aa-3dfd98e9b006}</Project>
       <Name>Database</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logic\Logic.csproj">
+      <Project>{ddfda5d7-b811-469b-9639-56f95de0be02}</Project>
+      <Name>Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.1.0.19235.1\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.1.0.19235.1\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />

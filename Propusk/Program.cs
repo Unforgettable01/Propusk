@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Database.Implements;
+using Logic.Interfaces;
+using Logic.Logics;
+using System;
 using System.Windows.Forms;
 using Unity;
 using Unity.Lifetime;
@@ -23,8 +26,13 @@ namespace Propusk
         {
             var currentContainer = new UnityContainer();
 
+            currentContainer.RegisterType<IClientStorage,ClientStorage>(new HierarchicalLifetimeManager());
 
+            currentContainer.RegisterType<ClientLogic>(new HierarchicalLifetimeManager());
 
+            currentContainer.RegisterType<IWorkerStorage, WorkerStorage>(new HierarchicalLifetimeManager());
+
+            currentContainer.RegisterType<WorkerLogic>(new HierarchicalLifetimeManager());
 
 
             return currentContainer;

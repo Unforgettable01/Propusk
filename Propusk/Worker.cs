@@ -9,13 +9,13 @@ namespace Propusk
     public class Worker
     {
         public int Id { get; } // ключ работникa
-        public int RemainingTime { get; set; }  // оставшееся время
+        //public int RemainingTime { get; set; }  // оставшееся время
 
 
-        public Worker(int Id,int RemainingTime)
+        public Worker(int Id)
         {
             this.Id = Id;
-            this.RemainingTime = RemainingTime;
+            //this.RemainingTime = RemainingTime;
         }
         //public int Start(int allocatedTime, StringBuilder textInfo)
         //{

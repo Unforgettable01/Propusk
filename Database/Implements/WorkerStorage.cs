@@ -1,5 +1,6 @@
 ﻿using Database.Models;
 using Logic.BindingModels;
+using Logic.Interfaces;
 using Logic.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace Database.Implements
 {
-    public class WorkerStorage
+    public class WorkerStorage : IWorkerStorage
     {
         public List<WorkerViewModel> GetFullList()
         {

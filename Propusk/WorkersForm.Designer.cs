@@ -94,6 +94,7 @@ namespace Propusk
             this.Controls.Add(this.dataGridViewWorkers);
             this.Name = "WorkersForm";
             this.Text = "WorkersForm";
+            this.Load += new System.EventHandler(this.FormWorker_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWorkers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWorker)).EndInit();
             this.ResumeLayout(false);

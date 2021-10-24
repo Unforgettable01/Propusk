@@ -30,16 +30,19 @@ namespace Propusk
         private void InitializeComponent()
         {
             this.buttonStartProg = new System.Windows.Forms.Button();
-            this.comboBoxCountWorkers = new System.Windows.Forms.ComboBox();
+            this.comboBoxCountClientsStart = new System.Windows.Forms.ComboBox();
             this.labelWorkers = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxCountVisitors = new System.Windows.Forms.ComboBox();
+            this.comboBoxCountWorkers = new System.Windows.Forms.ComboBox();
             this.buttonSaveReport = new System.Windows.Forms.Button();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.справочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сотрудникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.посетителиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.richTextBoxInfo = new System.Windows.Forms.RichTextBox();
+            this.comboBoxCountClientsFinish = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,23 +56,26 @@ namespace Propusk
             this.buttonStartProg.UseVisualStyleBackColor = true;
             this.buttonStartProg.Click += new System.EventHandler(this.buttonStart_Click);
             // 
-            // comboBoxCountWorkers
+            // comboBoxCountClientsStart
             // 
-            this.comboBoxCountWorkers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.comboBoxCountClientsStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxCountWorkers.FormattingEnabled = true;
-            this.comboBoxCountWorkers.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7"});
-            this.comboBoxCountWorkers.Location = new System.Drawing.Point(217, 26);
-            this.comboBoxCountWorkers.Name = "comboBoxCountWorkers";
-            this.comboBoxCountWorkers.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxCountWorkers.TabIndex = 4;
+            this.comboBoxCountClientsStart.FormattingEnabled = true;
+            this.comboBoxCountClientsStart.Items.AddRange(new object[] {
+            "10",
+            "20",
+            "30",
+            "40",
+            "50",
+            "60",
+            "70",
+            "80",
+            "90",
+            "100"});
+            this.comboBoxCountClientsStart.Location = new System.Drawing.Point(244, 61);
+            this.comboBoxCountClientsStart.Name = "comboBoxCountClientsStart";
+            this.comboBoxCountClientsStart.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxCountClientsStart.TabIndex = 4;
             // 
             // labelWorkers
             // 
@@ -89,12 +95,12 @@ namespace Propusk
             this.label1.TabIndex = 6;
             this.label1.Text = "Укажите кол-во посетителей в смене";
             // 
-            // comboBoxCountVisitors
+            // comboBoxCountWorkers
             // 
-            this.comboBoxCountVisitors.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.comboBoxCountWorkers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxCountVisitors.FormattingEnabled = true;
-            this.comboBoxCountVisitors.Items.AddRange(new object[] {
+            this.comboBoxCountWorkers.FormattingEnabled = true;
+            this.comboBoxCountWorkers.Items.AddRange(new object[] {
             "10",
             "20",
             "30",
@@ -105,10 +111,10 @@ namespace Propusk
             "80",
             "90",
             "100"});
-            this.comboBoxCountVisitors.Location = new System.Drawing.Point(217, 61);
-            this.comboBoxCountVisitors.Name = "comboBoxCountVisitors";
-            this.comboBoxCountVisitors.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxCountVisitors.TabIndex = 7;
+            this.comboBoxCountWorkers.Location = new System.Drawing.Point(223, 28);
+            this.comboBoxCountWorkers.Name = "comboBoxCountWorkers";
+            this.comboBoxCountWorkers.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxCountWorkers.TabIndex = 7;
             // 
             // buttonSaveReport
             // 
@@ -164,17 +170,60 @@ namespace Propusk
             this.richTextBoxInfo.TabIndex = 11;
             this.richTextBoxInfo.Text = "";
             // 
+            // comboBoxCountClientsFinish
+            // 
+            this.comboBoxCountClientsFinish.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxCountClientsFinish.FormattingEnabled = true;
+            this.comboBoxCountClientsFinish.Items.AddRange(new object[] {
+            "10",
+            "20",
+            "30",
+            "40",
+            "50",
+            "60",
+            "70",
+            "80",
+            "90",
+            "100",
+            "110"});
+            this.comboBoxCountClientsFinish.Location = new System.Drawing.Point(399, 61);
+            this.comboBoxCountClientsFinish.Name = "comboBoxCountClientsFinish";
+            this.comboBoxCountClientsFinish.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxCountClientsFinish.TabIndex = 12;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(220, 65);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(18, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "от";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(371, 65);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(19, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "до";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1283, 565);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.comboBoxCountClientsFinish);
             this.Controls.Add(this.richTextBoxInfo);
             this.Controls.Add(this.buttonSaveReport);
-            this.Controls.Add(this.comboBoxCountVisitors);
+            this.Controls.Add(this.comboBoxCountWorkers);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelWorkers);
-            this.Controls.Add(this.comboBoxCountWorkers);
+            this.Controls.Add(this.comboBoxCountClientsStart);
             this.Controls.Add(this.buttonStartProg);
             this.Controls.Add(this.menuStripMain);
             this.MainMenuStrip = this.menuStripMain;
@@ -191,16 +240,19 @@ namespace Propusk
 
         #endregion
         private System.Windows.Forms.Button buttonStartProg;
-        private System.Windows.Forms.ComboBox comboBoxCountWorkers;
+        private System.Windows.Forms.ComboBox comboBoxCountClientsStart;
         private System.Windows.Forms.Label labelWorkers;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBoxCountVisitors;
+        private System.Windows.Forms.ComboBox comboBoxCountWorkers;
         private System.Windows.Forms.Button buttonSaveReport;
         private System.Windows.Forms.MenuStrip menuStripMain;
         private System.Windows.Forms.ToolStripMenuItem справочникиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сотрудникиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem посетителиToolStripMenuItem;
         private System.Windows.Forms.RichTextBox richTextBoxInfo;
+        private System.Windows.Forms.ComboBox comboBoxCountClientsFinish;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 
