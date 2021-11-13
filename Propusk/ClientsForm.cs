@@ -33,7 +33,6 @@ namespace Propusk
                 {
                     dataGridViewClients.DataSource = list;
                     dataGridViewClients.Columns[0].Visible = false;
-                    //dataGridViewClients.Columns[2].Visible = false;
                 }
             }
             catch (Exception ex)

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Propusk
@@ -8,61 +9,153 @@ namespace Propusk
         public FormVisualization()
         {
             InitializeComponent();
-            DrawStart();
         }
-
-        private void DrawStart() ///  левая часть - оставшиеся клиенты правая часть - те, кто уже прошел 
+        private void pictureBox_Paint(object sender, PaintEventArgs e)
         {
-            int x =0;
-            int y=0;
-            int _width=100;
-            int _height=100;
-            Bitmap bmp = new Bitmap(pictureBoxVisualization.Width, pictureBoxVisualization.Height);
-            Graphics graph = Graphics.FromImage(bmp);
-            Pen pen = new Pen(Color.Blue);
-
-            while (_width < pictureBoxVisualization.Width)
-            {
-                for (int i = 0; i<8; i ++)
-                {
-                    pictureBoxVisualization.Image = null;
-                    x += 50;
-                    _width += 50;
-                    graph.DrawRectangle(pen, x, y, _width, _height);
-                    pictureBoxVisualization.Image = bmp;
-                    //System.Threading.Thread.Sleep(50);
-
-                }
-            }
-
-           // this.Close();
+            DrawLine();
         }
-
-        private void DrawFinish()
+        public void DrawLine()
         {
-            int x = 0;
-            int y = 0;
-            int _width = 100;
-            int _height = 100;
-            Bitmap bmp = new Bitmap(pictureBoxVisualization.Width, pictureBoxVisualization.Height);
-            Graphics graph = Graphics.FromImage(bmp);
-            Pen pen = new Pen(Color.Blue);
+            Bitmap bmp = new Bitmap(pictureBox.Width, pictureBox.Height); //  создали поле и передали туда размеры картинки, которая будет отрисовываться
+            Graphics g = Graphics.FromImage(bmp);   //создали графику и добавли туда картинку 
+            Pen pen = new Pen(Color.Black, 3);   // создали элемент, которым будем рисовать и указали цвет и тольщину
 
-            while (_width < pictureBoxVisualization.Width)
-            {
-                for (int i = 0; i < 8; i++)
-                {
-                    pictureBoxVisualization.Image = null;
-                    x += 50;
-                    _width += 50;
-                    graph.DrawRectangle(pen, x, y, _width, _height);
-                    pictureBoxVisualization.Image = bmp;
-                    //System.Threading.Thread.Sleep(50);
+            //рисуем линии разграничения пунктов - кол-во сотрудников 
+            g.DrawLine(pen, 0, pictureBox.Height/3, pictureBox.Width, pictureBox.Height / 3);   //первая линия 
+            g.DrawLine(pen, 0, pictureBox.Height / 3*2, pictureBox.Width, pictureBox.Height / 3*2);  //вторая линия
+            g.DrawLine(pen, 0, pictureBox.Height / 3*3-1, pictureBox.Width, pictureBox.Height / 3*3-1);  //третья лигия
 
-                }
-            }
 
-            // this.Close();
+            // рисуем сами пункты пропуска 
+            Pen penRect = new Pen(Color.Brown, 5);
+            g.DrawRectangle(penRect, pictureBox.Width / 2 - pictureBox.Width / 12, pictureBox.Height / 3 - pictureBox.Height / 3 +10, pictureBox.Width / 12, pictureBox.Height / 3-10);
+            g.DrawRectangle(penRect, pictureBox.Width / 2 - pictureBox.Width / 12, pictureBox.Height / 3 * 2 - pictureBox.Height / 3 + 10, pictureBox.Width / 12, pictureBox.Height / 3 - 10);
+            g.DrawRectangle(penRect, pictureBox.Width / 2 - pictureBox.Width / 12, pictureBox.Height / 3 * 3 - 1 - pictureBox.Height / 3 + 10, pictureBox.Width / 12, pictureBox.Height / 3 - 10);
+
+            // рисуем человечков для 1-ого пункта
+            Pen penPeople = new Pen(Color.Green, 3);
+            g.DrawLine(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2+30, pictureBox.Height / 3 - pictureBox.Height / 3 + 42, 
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height / 5); // тело 
+
+            g.DrawLine(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 +15, pictureBox.Height / 6  ,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height / 3 - pictureBox.Height / 3 + 60); //левая рука
+
+            g.DrawLine(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height / 3 - pictureBox.Height / 3 + 60,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 45, pictureBox.Height / 6); //правая рука
+
+
+            g.DrawLine(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height / 5,
+                pictureBox.Width / 2 - pictureBox.Width / 2 +45, pictureBox.Height / 3 ); //правая нога
+
+            g.DrawLine(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height / 5,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 15 , pictureBox.Height / 3); //левая нога
+
+            g.DrawEllipse(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 13, pictureBox.Height / 3 - pictureBox.Height / 3 + 10,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 34, pictureBox.Height / 3 - pictureBox.Height / 3 + 34);
+           
+            // рисуем человечков для 2-ого пункта
+            g.DrawLine(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height / 3 - pictureBox.Height / 3 + 42 + pictureBox.Height / 3,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height /5 + pictureBox.Height / 3); // тело 
+
+            g.DrawLine(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 15, pictureBox.Height / 6 + pictureBox.Height / 3,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height / 3 - pictureBox.Height / 3 + 60 + pictureBox.Height / 3); //левая рука
+
+            g.DrawLine(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height / 3 - pictureBox.Height / 3 + 60 + pictureBox.Height / 3,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 45, pictureBox.Height / 6 + pictureBox.Height / 3); //правая рука
+
+
+            g.DrawLine(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height / 5 + pictureBox.Height / 3,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 45, pictureBox.Height / 3 + pictureBox.Height / 3); //правая нога
+
+            g.DrawLine(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height / 5 + pictureBox.Height / 3,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 15, pictureBox.Height / 3 + pictureBox.Height / 3); //левая нога
+
+            g.DrawEllipse(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 13, pictureBox.Height / 3 - pictureBox.Height / 3 + 10 + pictureBox.Height / 3,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 34, pictureBox.Height / 3 - pictureBox.Height / 3 + 34);
+
+            // рисуем человечков для 3-ого пункта
+            g.DrawLine(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height / 3 - pictureBox.Height / 3 + 42 + pictureBox.Height / 3 + pictureBox.Height / 3,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height / 5 + pictureBox.Height / 3 + pictureBox.Height / 3); // тело 
+
+            g.DrawLine(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 15, pictureBox.Height / 6 + pictureBox.Height / 3 + pictureBox.Height / 3,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height / 3 - pictureBox.Height / 3 + 60 + pictureBox.Height / 3 + pictureBox.Height / 3); //левая рука
+
+            g.DrawLine(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height / 3 - pictureBox.Height / 3 + 60 + pictureBox.Height / 3 + pictureBox.Height / 3,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 45, pictureBox.Height / 6 + pictureBox.Height / 3 + pictureBox.Height / 3); //правая рука
+
+
+            g.DrawLine(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height / 5 + pictureBox.Height / 3 + pictureBox.Height / 3,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 45, pictureBox.Height / 3 + pictureBox.Height / 3 + pictureBox.Height / 3); //правая нога
+
+            g.DrawLine(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 30, pictureBox.Height / 5 + pictureBox.Height / 3 + pictureBox.Height / 3,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 15, pictureBox.Height / 3 + pictureBox.Height / 3 + pictureBox.Height / 3); //левая нога
+
+            g.DrawEllipse(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 13, pictureBox.Height / 3 - pictureBox.Height / 3 + 10 + pictureBox.Height / 3 + pictureBox.Height / 3,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 34, pictureBox.Height / 3 - pictureBox.Height / 3 + 34);
+            /////////////////////////////////////////////////
+            ///
+            /////////////////////////////////////////////////
+
+            // рисуем человечков для 1-ого пункта  правая часть
+            g.DrawLine(penPeople, pictureBox.Width  -  30, pictureBox.Height / 3 - pictureBox.Height / 3 + 42,
+                pictureBox.Width  - 30, pictureBox.Height / 5); // тело 
+
+            g.DrawLine(penPeople, pictureBox.Width  - 15, pictureBox.Height / 6,
+                pictureBox.Width  -  30, pictureBox.Height / 3 - pictureBox.Height / 3 + 60); //левая рука
+
+            g.DrawLine(penPeople, pictureBox.Width  - 30, pictureBox.Height / 3 - pictureBox.Height / 3 + 60,
+                pictureBox.Width  -  45, pictureBox.Height / 6); //правая рука
+
+
+            g.DrawLine(penPeople, pictureBox.Width  -  30, pictureBox.Height / 5,
+                pictureBox.Width  -  45, pictureBox.Height / 3); //правая нога
+
+            g.DrawLine(penPeople, pictureBox.Width  -  30, pictureBox.Height / 5,
+                pictureBox.Width -  15, pictureBox.Height / 3); //левая нога
+
+            g.DrawEllipse(penPeople, pictureBox.Width  - 23*2, pictureBox.Height / 3 - pictureBox.Height / 3 + 10,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 34, pictureBox.Height / 3 - pictureBox.Height / 3 + 34);
+
+            // рисуем человечков для 2-ого пункта правая часть 
+            g.DrawLine(penPeople, pictureBox.Width  - + 30, pictureBox.Height / 3 - pictureBox.Height / 3 + 42 + pictureBox.Height / 3,
+                pictureBox.Width  -  + 30, pictureBox.Height / 5 + pictureBox.Height / 3); // тело 
+
+            g.DrawLine(penPeople, pictureBox.Width -  15, pictureBox.Height / 6 + pictureBox.Height / 3,
+                pictureBox.Width -  30, pictureBox.Height / 3 - pictureBox.Height / 3 + 60 + pictureBox.Height / 3); //левая рука
+
+            g.DrawLine(penPeople, pictureBox.Width-  30, pictureBox.Height / 3 - pictureBox.Height / 3 + 60 + pictureBox.Height / 3,
+                pictureBox.Width  - 45, pictureBox.Height / 6 + pictureBox.Height / 3); //правая рука
+
+
+            g.DrawLine(penPeople, pictureBox.Width - 30, pictureBox.Height / 5 + pictureBox.Height / 3,
+                pictureBox.Width  -  45, pictureBox.Height / 3 + pictureBox.Height / 3); //правая нога
+
+            g.DrawLine(penPeople, pictureBox.Width -  30, pictureBox.Height / 5 + pictureBox.Height / 3,
+                pictureBox.Width -  15, pictureBox.Height / 3 + pictureBox.Height / 3); //левая нога
+
+            g.DrawEllipse(penPeople, pictureBox.Width  -  46, pictureBox.Height / 3 - pictureBox.Height / 3 + 10 + pictureBox.Height / 3,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 34, pictureBox.Height / 3 - pictureBox.Height / 3 + 34);
+
+            // рисуем человечков для 3-ого пункта правая часть
+            g.DrawLine(penPeople, pictureBox.Width -  30, pictureBox.Height / 3 - pictureBox.Height / 3 + 42 + pictureBox.Height / 3 + pictureBox.Height / 3,
+                pictureBox.Width  - 30, pictureBox.Height / 5 + pictureBox.Height / 3 + pictureBox.Height / 3); // тело 
+
+            g.DrawLine(penPeople, pictureBox.Width  -  15, pictureBox.Height / 6 + pictureBox.Height / 3 + pictureBox.Height / 3,
+                pictureBox.Width  -  30, pictureBox.Height / 3 - pictureBox.Height / 3 + 60 + pictureBox.Height / 3 + pictureBox.Height / 3); //левая рука
+
+            g.DrawLine(penPeople, pictureBox.Width -  30, pictureBox.Height / 3 - pictureBox.Height / 3 + 60 + pictureBox.Height / 3 + pictureBox.Height / 3,
+                pictureBox.Width -45, pictureBox.Height / 6 + pictureBox.Height / 3 + pictureBox.Height / 3); //правая рука
+
+
+            g.DrawLine(penPeople, pictureBox.Width -  30, pictureBox.Height / 5 + pictureBox.Height / 3 + pictureBox.Height / 3,
+                pictureBox.Width  - 45, pictureBox.Height / 3 + pictureBox.Height / 3 + pictureBox.Height / 3); //правая нога
+
+            g.DrawLine(penPeople, pictureBox.Width - 30, pictureBox.Height / 5 + pictureBox.Height / 3 + pictureBox.Height / 3,
+                pictureBox.Width -  15, pictureBox.Height / 3 + pictureBox.Height / 3 + pictureBox.Height / 3); //левая нога
+
+            g.DrawEllipse(penPeople, pictureBox.Width  - 46, pictureBox.Height / 3 - pictureBox.Height / 3 + 10 + pictureBox.Height / 3 + pictureBox.Height / 3,
+                pictureBox.Width / 2 - pictureBox.Width / 2 + 34, pictureBox.Height / 3 - pictureBox.Height / 3 + 34);
+            pictureBox.Image = bmp;
         }
     }
 }

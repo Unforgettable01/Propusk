@@ -29,38 +29,37 @@ namespace Propusk
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBoxVisualization = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVisualization)).BeginInit();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBoxVisualization
+            // pictureBox
             // 
-            this.pictureBoxVisualization.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxVisualization.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pictureBoxVisualization.Location = new System.Drawing.Point(13, 13);
-            this.pictureBoxVisualization.Name = "pictureBoxVisualization";
-            this.pictureBoxVisualization.Size = new System.Drawing.Size(775, 425);
-            this.pictureBoxVisualization.TabIndex = 0;
-            this.pictureBoxVisualization.TabStop = false;
+            this.pictureBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(1220, 593);
+            this.pictureBox.TabIndex = 0;
+            this.pictureBox.TabStop = false;
+            this.pictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox_Paint);
             // 
             // FormVisualization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pictureBoxVisualization);
+            this.ClientSize = new System.Drawing.Size(1220, 593);
+            this.Controls.Add(this.pictureBox);
             this.Name = "FormVisualization";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormVisualization";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVisualization)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxVisualization;
+        private System.Windows.Forms.PictureBox pictureBox;
     }
 }

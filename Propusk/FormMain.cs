@@ -78,6 +78,7 @@ namespace Propusk
             else
             {
                 InitTwo();
+                Draw();
             }
             //else if (ShiftCount ==3)
             //{
@@ -153,6 +154,13 @@ namespace Propusk
 
 
         public void Draw ()
+        {
+            var form = Container.Resolve<FormVisualization>();
+            form.ShowDialog();
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormVisualization>();
             form.ShowDialog();
