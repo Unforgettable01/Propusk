@@ -24,7 +24,6 @@ namespace Propusk
         private int ClientCountFinish = 0;
         private int numberSituation = 0;
         private int[] massShiftForUpdateDictionary = {1,4,7,10,13,16,19,22,25,28,31,34,37,40,43,46,49,52,55};
-
         public FormMain()
         {
             InitializeComponent();
@@ -147,7 +146,6 @@ namespace Propusk
             richTextBoxInfo.SelectionFont = new Font("Tahoma", 12);
             richTextBoxInfo.AppendText("\nВсего на смене " + clients.Count + " клиента(ов)");
         }
-
         private void InitTwo()
         {
             workers = new Queue<Worker>();
@@ -167,18 +165,10 @@ namespace Propusk
             richTextBoxInfo.SelectionFont = new Font("Tahoma", 12);
             richTextBoxInfo.AppendText("\nВсего на смене " + clients.Count + " клиентов ");
         }
-
         public void Draw ()
         {
             var form = Container.Resolve<FormVisualization>();
             form.numberSituation = this.numberSituation;
-            form.ShowDialog();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormVisualization>();
-            form.numberSituation = 1;
             form.ShowDialog();
         }
         private void сотрудникиToolStripMenuItem_Click(object sender, EventArgs e)

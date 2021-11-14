@@ -1,4 +1,5 @@
-﻿using Logic.Logics;
+﻿using Logic.BindingModels;
+using Logic.Logics;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,8 +33,7 @@ namespace Propusk
                 if (list != null)
                 {
                     dataGridViewWorkers.DataSource = list;
-                    dataGridViewWorkers.Columns[0].Visible = false;
-                    //dataGridViewWorkers.Columns[2].Visible = false;
+                    dataGridViewWorkers.Columns[0].Visible = true;
                 }
             }
             catch (Exception ex)
@@ -48,7 +48,20 @@ namespace Propusk
         }
         private void buttonFind_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                int id = Convert.ToInt32(textBoxFinfWorker.Text);
+                var list = _workerLogic.Read(new WorkerBindingModel { Id = id });
+                if (list != null)
+                {
+                    dataGridViewWorker.DataSource = list;
+                    //dataGridViewWorker.AutoSizeColumnsMode = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

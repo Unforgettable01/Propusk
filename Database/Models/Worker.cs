@@ -10,9 +10,6 @@ namespace Database.Models
         public int id { get; set; }
         [Required]
         public string WorkerFIO { get; set; }
-        [Required]
-        public int WorkingTime { get; set; }
-        [Required]
-        public int PauseTime { get; set; }
+
     }
 }

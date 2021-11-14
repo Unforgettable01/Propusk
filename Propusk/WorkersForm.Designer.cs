@@ -40,6 +40,9 @@ namespace Propusk
             // 
             // dataGridViewWorkers
             // 
+            this.dataGridViewWorkers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewWorkers.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridViewWorkers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewWorkers.Location = new System.Drawing.Point(13, 13);
@@ -49,7 +52,7 @@ namespace Propusk
             // 
             // buttonFind
             // 
-            this.buttonFind.Location = new System.Drawing.Point(500, 199);
+            this.buttonFind.Location = new System.Drawing.Point(484, 48);
             this.buttonFind.Name = "buttonFind";
             this.buttonFind.Size = new System.Drawing.Size(158, 23);
             this.buttonFind.TabIndex = 1;
@@ -59,7 +62,7 @@ namespace Propusk
             // 
             // textBoxFinfWorker
             // 
-            this.textBoxFinfWorker.Location = new System.Drawing.Point(558, 173);
+            this.textBoxFinfWorker.Location = new System.Drawing.Point(572, 22);
             this.textBoxFinfWorker.Name = "textBoxFinfWorker";
             this.textBoxFinfWorker.Size = new System.Drawing.Size(100, 20);
             this.textBoxFinfWorker.TabIndex = 2;
@@ -67,19 +70,22 @@ namespace Propusk
             // labelFindWorker
             // 
             this.labelFindWorker.AutoSize = true;
-            this.labelFindWorker.Location = new System.Drawing.Point(497, 176);
+            this.labelFindWorker.Location = new System.Drawing.Point(423, 25);
             this.labelFindWorker.Name = "labelFindWorker";
-            this.labelFindWorker.Size = new System.Drawing.Size(55, 13);
+            this.labelFindWorker.Size = new System.Drawing.Size(143, 13);
             this.labelFindWorker.TabIndex = 3;
-            this.labelFindWorker.Text = "Значение";
+            this.labelFindWorker.Text = "Номер искомого человека";
             // 
             // dataGridViewWorker
             // 
+            this.dataGridViewWorker.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewWorker.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridViewWorker.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewWorker.Location = new System.Drawing.Point(469, 248);
+            this.dataGridViewWorker.Location = new System.Drawing.Point(405, 98);
             this.dataGridViewWorker.Name = "dataGridViewWorker";
-            this.dataGridViewWorker.Size = new System.Drawing.Size(240, 84);
+            this.dataGridViewWorker.Size = new System.Drawing.Size(388, 84);
             this.dataGridViewWorker.TabIndex = 4;
             // 
             // WorkersForm

@@ -77,8 +77,6 @@ namespace Database.Implements
         private Worker CreateModel(WorkerBindingModel model, Worker worker)
         {
             worker.WorkerFIO = model.WorkerFIO;
-            worker.WorkingTime = model.WorkingTime;
-            worker.PauseTime = model.PauseTime;
             return worker;
         }
 
@@ -87,9 +85,7 @@ namespace Database.Implements
             return new WorkerViewModel
             {
                 Id = worker.id,
-                WorkerFIO = worker.WorkerFIO,
-                WorkingTime = worker.WorkingTime,
-                PauseTime = worker.PauseTime
+                WorkerFIO = worker.WorkerFIO
             };
         }
     }

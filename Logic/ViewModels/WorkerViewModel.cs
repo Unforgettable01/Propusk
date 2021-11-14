@@ -7,12 +7,10 @@ namespace Logic.ViewModels
 {
     public class WorkerViewModel
     {
+        [DisplayName("Номер для поиска")]
         public int Id { get; set; }
         [DisplayName("ФИО работника")]
         public string WorkerFIO { get; set; }
-        [DisplayName("Время на заказ")]
-        public int WorkingTime { get; set; }
-        [DisplayName("Время на перерыв")]
-        public int PauseTime { get; set; }
+
     }
 }

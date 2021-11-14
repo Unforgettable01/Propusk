@@ -40,6 +40,9 @@ namespace Propusk
             // 
             // dataGridViewClients
             // 
+            this.dataGridViewClients.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewClients.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridViewClients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewClients.Location = new System.Drawing.Point(12, 13);
@@ -49,32 +52,35 @@ namespace Propusk
             // 
             // dataGridViewClient
             // 
+            this.dataGridViewClient.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewClient.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridViewClient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewClient.Location = new System.Drawing.Point(449, 234);
+            this.dataGridViewClient.Location = new System.Drawing.Point(397, 93);
             this.dataGridViewClient.Name = "dataGridViewClient";
-            this.dataGridViewClient.Size = new System.Drawing.Size(240, 84);
+            this.dataGridViewClient.Size = new System.Drawing.Size(391, 84);
             this.dataGridViewClient.TabIndex = 8;
             // 
             // labelFindWorker
             // 
             this.labelFindWorker.AutoSize = true;
-            this.labelFindWorker.Location = new System.Drawing.Point(477, 162);
+            this.labelFindWorker.Location = new System.Drawing.Point(420, 20);
             this.labelFindWorker.Name = "labelFindWorker";
-            this.labelFindWorker.Size = new System.Drawing.Size(55, 13);
+            this.labelFindWorker.Size = new System.Drawing.Size(143, 13);
             this.labelFindWorker.TabIndex = 7;
-            this.labelFindWorker.Text = "Значение";
+            this.labelFindWorker.Text = "Номер искомого человека";
             // 
             // textBoxFinfWorker
             // 
-            this.textBoxFinfWorker.Location = new System.Drawing.Point(538, 159);
+            this.textBoxFinfWorker.Location = new System.Drawing.Point(569, 17);
             this.textBoxFinfWorker.Name = "textBoxFinfWorker";
             this.textBoxFinfWorker.Size = new System.Drawing.Size(100, 20);
             this.textBoxFinfWorker.TabIndex = 6;
             // 
             // buttonFind
             // 
-            this.buttonFind.Location = new System.Drawing.Point(480, 185);
+            this.buttonFind.Location = new System.Drawing.Point(479, 43);
             this.buttonFind.Name = "buttonFind";
             this.buttonFind.Size = new System.Drawing.Size(158, 23);
             this.buttonFind.TabIndex = 5;

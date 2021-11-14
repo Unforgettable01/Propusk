@@ -10,6 +10,7 @@ namespace Logic.ViewModels
     public class ClientViewModel
     {
         [DataMember]
+        [DisplayName("Номер для поиска")]
         public int Id { get; set; }
         [DataMember]
         [DisplayName("ФИО клиента")]
