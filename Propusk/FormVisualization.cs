@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Propusk
@@ -9,12 +10,13 @@ namespace Propusk
         public FormVisualization()
         {
             InitializeComponent();
+
         }
         private void pictureBox_Paint(object sender, PaintEventArgs e)
         {
             DrawLine();
         }
-        public void DrawLine()
+        async public void DrawLine()
         {
             Bitmap bmp = new Bitmap(pictureBox.Width, pictureBox.Height); //  создали поле и передали туда размеры картинки, которая будет отрисовываться
             Graphics g = Graphics.FromImage(bmp);   //создали графику и добавли туда картинку 
@@ -93,7 +95,13 @@ namespace Propusk
             g.DrawEllipse(penPeople, pictureBox.Width / 2 - pictureBox.Width / 2 + 13, pictureBox.Height / 3 - pictureBox.Height / 3 + 10 + pictureBox.Height / 3 + pictureBox.Height / 3,
                 pictureBox.Width / 2 - pictureBox.Width / 2 + 34, pictureBox.Height / 3 - pictureBox.Height / 3 + 34);
             /////////////////////////////////////////////////
-            ///
+           // pictureBox.Image = bmp;
+            //Timer timer1 = new Timer();
+            //timer1.Start();
+            //timer1.Interval = 5000;
+            //timer1.Stop();
+            //System.Threading.Thread.Sleep(5000);
+           // await Task.Delay(5000); // 5 секунд
             /////////////////////////////////////////////////
 
             // рисуем человечков для 1-ого пункта  правая часть
@@ -156,6 +164,13 @@ namespace Propusk
             g.DrawEllipse(penPeople, pictureBox.Width  - 46, pictureBox.Height / 3 - pictureBox.Height / 3 + 10 + pictureBox.Height / 3 + pictureBox.Height / 3,
                 pictureBox.Width / 2 - pictureBox.Width / 2 + 34, pictureBox.Height / 3 - pictureBox.Height / 3 + 34);
             pictureBox.Image = bmp;
+        }
+
+        async private void FormVisualization_Load(object sender, EventArgs e)
+        {
+            //await Task.Delay(3000); // 5 секунд
+            //Close();
+
         }
     }
 }

@@ -23,8 +23,9 @@ namespace Propusk
         private int ClientCountStart = 0;
         private int ClientCountFinish = 0;
 
+        private int[] massShiftForUpdateDictionary = {1,4,7,10,13,16,19,22,25,28,31,34,37,40,43,46,49,52,55};
 
-        public DrawInfo DrawInfo { get; private set; }
+        //public DrawInfo DrawInfo { get; private set; }
         public FormMain()
         {
             InitializeComponent();
@@ -32,7 +33,16 @@ namespace Propusk
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            ShiftCount ++; // при нажатии кол-во смен увеличивается на 1, чтобы модно было отследить как формировать очереди работников и посетителей            
+                
+            //for (int i = 0; i < massShiftForUpdateDictionary.Length; i++)
+            //{
+            //    if (ShiftCount == massShiftForUpdateDictionary[i]-1 && i != 0)
+            //    {
+            //        MessageBox.Show("Куждую 3-ю смену происходит сброс данных\nСейчас имеено такая смена\nПожалуйста, введите новые данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        break;
+            //    }
+            //}
+            ShiftCount++; // при нажатии кол-во смен увеличивается на 1, чтобы модно было отследить как формировать очереди работников и посетителей
             workersCount = Convert.ToInt32(comboBoxCountWorkers.SelectedItem.ToString());
             Random rand =new Random();
             ClientCountStart =Convert.ToInt32(comboBoxCountClientsStart.SelectedItem.ToString());
@@ -56,47 +66,34 @@ namespace Propusk
                 MessageBox.Show("Ошибкa тут: " + ex.Message);
             }
         }
-
-        private void сотрудникиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<WorkersForm>();
-            form.ShowDialog();
-        }
-
-        private void посетителиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<ClientsForm>();
-            form.ShowDialog();
-        }
-
         public void Shedule()
         {
-            if (ShiftCount  == 1 || ShiftCount == 4 || ShiftCount == 7 )
+            for (int i = 0; i < massShiftForUpdateDictionary.Length; i++)
             {
-                InitOne();
+                if (ShiftCount == massShiftForUpdateDictionary[i] && i == 0)
+                {
+                    richTextBoxInfo.SelectionFont = new Font("Tahoma", 12, FontStyle.Bold);
+                    richTextBoxInfo.AppendText("\nДанные о количестве персонала и посетителей успешно получены");
+                    InitOne();
+                    break;
+                }
+                else if (ShiftCount == massShiftForUpdateDictionary[i])
+                {
+                    richTextBoxInfo.SelectionFont = new Font("Tahoma", 12, FontStyle.Bold);
+                    richTextBoxInfo.AppendText("\nДанные о количестве персонала и посетителей успешно получены");
+                    InitOne();
+                    break;
+                }
+                else if (ShiftCount != massShiftForUpdateDictionary[i] && i == massShiftForUpdateDictionary.Length -1)
+                {
+                    InitTwo();
+                    Draw();
+                }
             }
-            else
-            {
-                InitTwo();
-                Draw();
-            }
-            //else if (ShiftCount ==3)
-            //{
-            //    InitTwo();
-            //}
-            //else if (ShiftCount==4)
-            //{
-            //    //MessageBox.Show("Укажите новое кол-во сотрудников", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //   // DialogResult = DialogResult.OK;
-            //    InitOne();
-            //}
-            //else if (ShiftCount > 4)
-            //{
-            //    richTextBoxInfo.AppendText("")
-            //}
-            richTextBoxInfo.AppendText("\nНачалась смена № - " + ShiftCount);
-            richTextBoxInfo.AppendText("\n\n");
-            richTextBoxInfo.AppendText("\n|---------------------------------------------------------------------------------------|\n");
+            richTextBoxInfo.SelectionFont = new Font("Tahoma", 14, FontStyle.Bold);
+            richTextBoxInfo.AppendText("\n\tНачалась смена № - " + ShiftCount);
+            richTextBoxInfo.SelectionFont = new Font("Ariel", 9);
+            richTextBoxInfo.AppendText("\n___________________________________________________________");
 
             while (workers.Count != 0)
             {
@@ -108,28 +105,29 @@ namespace Propusk
                 Worker actualWorker = workers.Dequeue();
                 Client actualClient = clients.Dequeue();              
                 richTextBoxInfo.AppendText("\n Работник № - " + actualWorker.Id  + " обработал клиента № - " + actualClient.Id);
-
             }
+            richTextBoxInfo.SelectionFont = new Font("Ariel", 10);
+            richTextBoxInfo.SelectionColor = System.Drawing.Color.Red;
             richTextBoxInfo.AppendText("\nВ очереди осталось " + clients.Count + " человек\n");
         }
         private void InitOne()
         {
             workers = new Queue<Worker>();
             clients = new Queue<Client>();
-
-            
+           
             for (int i = 0; i < workersCount; i++)
             {
                 workers.Enqueue(new Worker(i + 1));
-                //richTextBoxInfo.AppendText("\nБыл создан работник №  -  " + (i + 1));
             }
+            richTextBoxInfo.SelectionFont = new Font("Tahoma", 12);
             richTextBoxInfo.AppendText("\nВсего на смене " + workers.Count + " работников");
 
             for (int i = 0; i < clientsCount; i++)
             {
                 clients.Enqueue(new Client(i + 1));
             }
-            richTextBoxInfo.AppendText("\nВсего на смене " + clients.Count + " клиентов");
+            richTextBoxInfo.SelectionFont = new Font("Tahoma", 12);
+            richTextBoxInfo.AppendText("\nВсего на смене " + clients.Count + " клиента(ов)");
         }
 
         private void InitTwo()
@@ -138,10 +136,9 @@ namespace Propusk
             for (int i = 0; i < workersCount; i++)
             {
                 workers.Enqueue(new Worker(i + 1));
-                //richTextBoxInfo.AppendText("\nБыл создан работник №  -  " + (i + 1));
             }
+            richTextBoxInfo.SelectionFont = new Font("Tahoma", 12);
             richTextBoxInfo.AppendText("\nВсего на смене " + workers.Count + " работников");
-
 
             int clientCountNew = clients.Count + clientsCount;
             richTextBoxInfo.AppendText("\nОсталось - " + clients.Count + " пришло " + clientsCount);
@@ -149,20 +146,29 @@ namespace Propusk
             {
                 clients.Enqueue(new Client(i + 1));
             }
+            richTextBoxInfo.SelectionFont = new Font("Tahoma", 12);
             richTextBoxInfo.AppendText("\nВсего на смене " + clients.Count + " клиентов ");
         }
-
 
         public void Draw ()
         {
             var form = Container.Resolve<FormVisualization>();
             form.ShowDialog();
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormVisualization>();
+            form.ShowDialog();
+        }
+        private void сотрудникиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<WorkersForm>();
+            form.ShowDialog();
+        }
+        private void посетителиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<ClientsForm>();
             form.ShowDialog();
         }
     }
